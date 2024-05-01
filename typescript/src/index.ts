@@ -78,7 +78,7 @@ export const handleDiscounts = (services: ServiceType[], year: ServiceYear, base
         return bPrice;
     }
 
-    //different packages offered depending on what services selcted
+    //different packages offered depending on what services selected
     const package1: ServiceType[] = ["Photography", "VideoRecording"];
     const package2: ServiceType[] = ["Photography", "WeddingSession"];
     const package3: ServiceType[] = ["WeddingSession", "VideoRecording"];
