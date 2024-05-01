@@ -28,7 +28,7 @@ const twentyTwentyTwo = {
 
 
 /**
- * Updates the services selected
+ * Updates the services selected or deselected
  * @param previouslySelectedServices 
  * @param action 
  * @returns []
@@ -78,6 +78,7 @@ export const handleDiscounts = (services: ServiceType[], year: ServiceYear, base
         return bPrice;
     }
 
+    //different packages offered depending on what services selcted
     const package1: ServiceType[] = ["Photography", "VideoRecording"];
     const package2: ServiceType[] = ["Photography", "WeddingSession"];
     const package3: ServiceType[] = ["WeddingSession", "VideoRecording"];
