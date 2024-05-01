@@ -34,32 +34,40 @@ var updateSelectedServices = function (previouslySelectedServices, action) {
     if (action.type === "Select") {
         if (!previouslySelectedServices.includes(action.service)) {
             previouslySelectedServices.push(action.service);
+            console.log("Select: " + previouslySelectedServices);
         }
         ;
+        if ((!previouslySelectedServices.includes("Photography") && !previouslySelectedServices.includes("VideoRecording")) && previouslySelectedServices.includes("BlurayPackage")) {
+            var index = previouslySelectedServices.indexOf("BlurayPackage");
+            previouslySelectedServices.splice(index, 1);
+            //console.log("3: " + previouslySelectedServices);
+        }
+        ;
+        return previouslySelectedServices;
     }
     else if (action.type === "Deselect") {
         if (previouslySelectedServices.includes(action.service)) {
             var index = previouslySelectedServices.indexOf(action.service);
             previouslySelectedServices.splice(index, 1);
-            console.log("New Array: " + previouslySelectedServices);
+            //console.log("New Array: " + previouslySelectedServices)
         }
     }
     ;
-    console.log("After selection: " + previouslySelectedServices);
-    console.log(previouslySelectedServices.includes("BlurayPackage"));
-    if ((previouslySelectedServices.includes("BlurayPackage")) && (!previouslySelectedServices.includes("Photography") || !previouslySelectedServices.includes("VideoRecording"))) {
-        var index = previouslySelectedServices.indexOf("BlurayPackage");
-        previouslySelectedServices.splice(index, 1);
-        console.log("3: " + previouslySelectedServices);
-    }
-    ;
+    /*
+    if((previouslySelectedServices.includes("BlurayPackage")) && (!previouslySelectedServices.includes("Photography") || !previouslySelectedServices.includes("VideoRecording"))){
+            
+            const index = previouslySelectedServices.indexOf("BlurayPackage");
+            previouslySelectedServices.splice(index, 1);
+            //console.log("3: " + previouslySelectedServices);
+    };
+    */
     if ((previouslySelectedServices.includes("TwoDayEvent")) && (!previouslySelectedServices.includes("Photography") && !previouslySelectedServices.includes("VideoRecording"))) {
         var index = previouslySelectedServices.indexOf("TwoDayEvent");
         previouslySelectedServices.splice(index, 1);
-        console.log("3: " + previouslySelectedServices);
+        //console.log("3: " + previouslySelectedServices);
     }
     ;
-    console.log("4: " + previouslySelectedServices);
+    //console.log("4: " + previouslySelectedServices);
     return previouslySelectedServices;
 };
 exports.updateSelectedServices = updateSelectedServices;
@@ -155,7 +163,7 @@ var calculatePrice = function (selectedServices, selectedYear) {
 };
 exports.calculatePrice = calculatePrice;
 //({ basePrice: 0, finalPrice: 0 });
-var result = (0, exports.updateSelectedServices)(["WeddingSession", "Photography"], { type: "Deselect", service: "Photography" });
+var result = (0, exports.updateSelectedServices)(["WeddingSession", "VideoRecording"], { type: "Select", service: "BlurayPackage" });
 console.log(result);
 //let price = calculatePrice(result, 2021);
 //console.log(price);

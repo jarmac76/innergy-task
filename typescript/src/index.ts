@@ -38,30 +38,27 @@ export const updateSelectedServices = (previouslySelectedServices: ServiceType[]
     if(action.type === "Select"){
         if(!previouslySelectedServices.includes(action.service)){
            previouslySelectedServices.push(action.service);
+           console.log("Select: " + previouslySelectedServices);
         };
+        if((!previouslySelectedServices.includes("Photography") && !previouslySelectedServices.includes("VideoRecording")) && previouslySelectedServices.includes("BlurayPackage")){
+            
+            const index = previouslySelectedServices.indexOf("BlurayPackage");
+            previouslySelectedServices.splice(index, 1);
+        };
+        return previouslySelectedServices
 
     }
     else if(action.type === "Deselect"){
         if(previouslySelectedServices.includes(action.service)){
             const index = previouslySelectedServices.indexOf(action.service);
             previouslySelectedServices.splice(index, 1);
-            console.log("New Array: " + previouslySelectedServices)
         }
-    };
-    if((previouslySelectedServices.includes("BlurayPackage")) && (!previouslySelectedServices.includes("Photography") || !previouslySelectedServices.includes("VideoRecording"))){
-            
-            const index = previouslySelectedServices.indexOf("BlurayPackage");
-            previouslySelectedServices.splice(index, 1);
-            console.log("3: " + previouslySelectedServices);
     };
     if((previouslySelectedServices.includes("TwoDayEvent")) && (!previouslySelectedServices.includes("Photography") && !previouslySelectedServices.includes("VideoRecording"))){
             
             const index = previouslySelectedServices.indexOf("TwoDayEvent");
             previouslySelectedServices.splice(index, 1);
-            console.log("3: " + previouslySelectedServices);
     };
-    console.log("4: " + previouslySelectedServices);
-   
     return previouslySelectedServices;
 };
 
@@ -148,9 +145,3 @@ export const calculatePrice = (selectedServices: ServiceType[], selectedYear: Se
     
     return ({"basePrice": basePrice, "finalPrice": finalPrice });
 };
-     //({ basePrice: 0, finalPrice: 0 });
-
-//let result = updateSelectedServices(["WeddingSession", "Photography"], { type : "Deselect", service: "Photography" });
-//console.log(result);
-//let price = calculatePrice(result, 2021);
-//console.log(price);
